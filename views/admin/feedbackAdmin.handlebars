@@ -1,0 +1,27 @@
+<link rel="stylesheet" type="text/css" href="/css/feedbackA.css">
+
+{{#if feedbacks}}
+<h1>Feedback</h1>
+    <br>
+    {{#each feedbacks}}
+    <table class="feedbackA" align="center">
+
+            <tr>
+                <td><img src="{{imgurl}}">{{DropdownPorS}}{{rate}}</td>
+            </tr>
+            <tr>
+                <td></td>{{DropdownSType}}<td>{{productcode}}</td>
+            </tr>
+            <tr>
+                <td></td><td></td>
+            </tr>
+            <tr>
+                <td>{{Message}}</td>
+            </tr>
+            <tr><td>{{emailfeedback}}</td></tr>
+        </table>
+        <br>
+        <br>
+            {{/each}}
+            {{/if}}
+           

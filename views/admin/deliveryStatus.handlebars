@@ -1,0 +1,50 @@
+<link rel="stylesheet" type="text/css" href="/css/del_admin.css">
+
+<body>
+<h1>Delivery reference</h1>
+    <br>
+    <table class="adDel" align="center">
+        <tr>
+            <th>Item code</th>
+            <th>Description</th>
+            <th>Merchant</th>
+            <th>Qty</th>
+            <th>Reference No.</th>
+            <th>Date sent</th>
+            <th>Expected arrival date</th>
+            <th>Arrival status</th>
+        </tr>
+        {{#if forms}}
+        {{#each forms}}
+        <tr>
+
+            <td>{{itemCode}}</td>
+            <td>{{description}}</td>
+            <td>{{merchant}}</td>
+            <td id = "quantity">{{quantity}}</td>
+            <td>{{referenceNo}}</td>
+            <td>{{dateOfDelivery}}</td>
+            <td></td>
+            <td id = "statusWdate"><input type="button" onclick="myFunction()" id="status" value={{status}}></td>
+        </tr>
+            
+
+            {{/each}}
+            {{/if}}
+    </table>
+</body>
+
+<script>
+function myFunction() {
+  //var x = document.getElementById("quantity");
+//const reference = require("../models/reference.js")
+  var x = document.getElementById("status").value;
+  var time = Date()
+  if (x == "pending")
+    document.getElementById("status").value = "arrived";
+    document.getElementById("status").disabled = true;
+    document.getElementById("statusWdate").innerHTML = "Arrived " + time;
+    //document.getElementById('demo').innerHTML = Date()
+} 
+
+</script>

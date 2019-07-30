@@ -1,0 +1,66 @@
+<link rel="stylesheet" type="text/css" href="/css/del_admin.css">
+<body>
+    <body onload="show()"></body>
+    <div>
+        {{#if deliveries}}
+        <h1>Delivery Schedule</h1>
+        <br>
+        <select class="region" name="" id="selectFilter" style="margin-left: 43em;" onchange="myFunction()">
+            <option class="regionPick" id="" value="all" selected>All Regions</option>
+            <option class="regionPick" id="" value="East">East</option>
+            <option class="regionPick" id="" value="North">North</option>
+            <option class="regionPick" id="" value="West">West</option>
+        </select>
+          <br><br>
+
+        <table class="adDel" align="center">
+            <tr>
+                <th>No.</th>
+                <th>Date and Time of Delivery</th>
+                <th>Customer Name</th>
+                <th id="bigger">Order No.</th>
+                <th id="bigger">Shipping Address</th>
+                <th id="bigger">Region</th>
+                <th id="pickUpLoc">Pick Up Location</th>
+                <th>Delivery details</th>
+                <th id="bigger">Tracker</th>
+            </tr>
+            {{#each deliveries}}
+            <tr>
+
+                <td>{{id}}</td>
+                <td id='dNt'>{{delDate}},<p>{{delPickUpTime}}</p>
+                </td>
+                <td>{{cName}}</td>
+                <td>{{cOrderNo}}</td>
+                <td>{{cAddr}},<p id="postal"></p>Singapore {{cPostal_Code}}</p>
+                </td>
+                <td>
+                    <p id="region">{{cRegion}}</p>
+                </td>
+                <td id="pickUpLoc">Keppel Logistics @ Tampines Logistics Park, 27 Greenwich Dr <p>Singapore 533912</p>
+                </td>
+                <td><a href="/main_s/del_details/{{id}}">Approved</a></td>
+                <td>Packing..</td>
+                {{!-- {{/if}} --}}
+                {{/each}}
+                {{/if}}
+            </tr>
+
+        </table>
+    </div>
+    <script>
+        function myFunction() {
+            var e = document.getElementById("selectFilter");
+            var strUser = e.options[e.selectedIndex].value;
+            console.log(strUser, "aye");
+            location.replace("/main_s/delivery/" + strUser)
+    }
+        function show() {
+            urlNow = window.location.href;
+            urlSplit = urlNow.slice(30);
+            document.getElementById("selectFilter").value = urlSplit;
+        }
+    </script>
+
+</body> 

@@ -1,0 +1,309 @@
+{{!-- <h3>You have a total of 3 deliveries today</h3>
+<div class="1div">
+    <label>No.:</label><p>1</p>
+    <br>
+    <label>Order No.:</label><p>{{cOrderNo}}</p>
+    <label>Customer Name:</label><p>{{cName}}</p>
+    
+</div> --}}
+<!DOCTYPE html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body >
+  <br><br><br><br>
+  <h1>Your Deliveries</h1>
+  <br>
+
+    <select class="region" name="" id="">
+    <option class="regionPick" id="" value="all" selected>All Regions</option>
+    <option class="regionPick" id="" value="East">East</option>
+    <option class="regionPick" id="" value="North">North</option>
+    <option class="regionPick" id="" value="West">West</option>
+  </select>
+
+
+  {{!-- <h2>Accordion Example</h2>
+  <p><strong>Note:</strong> The <strong>data-parent</strong> attribute makes sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown.</p> --}}
+  <div class="panel-group" id="accordion">
+
+    <div class="panel panel-default" style="width: 70em; margin-left: 150px;">
+
+      <div class="panel-heading" style="background-color: moccasin ;"> {{!--navajowhite--}}
+        <h4 class="panel-title" style="height: 20px; ">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">{{dateToday}}</a>
+        </h4>
+
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        {{#if deli1}}
+        {{#each deli1}}
+        <div class="panel-body" onload="checkOrder()">
+
+ <div class="col-sm-12 col-md-6 col-lg-8">
+            {{!-- <div class="row"> --}}
+            <div class="col-sm-12 col-md-6 col-lg-3">
+
+              <label>Order No.</label>
+              <p id="odNo">{{cOrderNo}}</p>
+
+ </div>
+            {{!-- {{#if orderItem}} --}}
+            {{!-- {{#each orderItem}} --}}
+            <div class="col-sm-12 col-md-6 col-lg-3">
+
+               <label>Item & quantity</label>
+              {{!-- {{#each orderItem}} --}}
+              <p id="p">{{ItemName}}</p>
+
+                          </div>
+            <br><br>
+{{!-- </div> --}}
+          </div>
+</div>
+          {{/each}}
+          {{else}}
+          <p style="text-align: center; font-weight: bold;">There are no deliveries on {{dateToday}}</p>
+          {{/if}}
+      </div>
+    </div>
+
+<br>
+
+<div class="panel panel-default" style="width: 70em; margin-left: 150px;">
+      <div class="panel-heading" style="background-color: moccasin ;"> {{!--navajowhite--}}
+        <h4 class="panel-title" style="height: 20px; ">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">{{dateTmr}}</a>
+        </h4>
+      </div>
+
+ <div id="collapse2" class="panel-collapse collapse ">
+        {{#if deli2}}
+        {{#each deli2}}
+        <div class="panel-body">
+
+          <div class="col-sm-12 col-md-6 col-lg-8">
+            {{!-- <div class="row"> --}}
+            <div class="col-sm-12 col-md-6 col-lg-3">
+
+              <label>Order No.</label>
+              <p>{{cOrderNo}}</p>
+
+            </div>
+            {{!-- {{#if orderItem}} --}}
+            {{!-- {{#each orderItem}} --}}
+            <div class="col-sm-12 col-md-6 col-lg-3">
+
+
+              <label>Item & quantity</label>
+              {{!-- {{#each}} --}}
+              <p id="myDIV">{{ItemName}}</p>
+
+              {{!-- {{/each}} --}}
+            </div>
+            <br><br>
+
+            {{!-- </div> --}}
+          </div>
+
+
+
+
+
+
+
+        </div>
+ {{/each}}
+
+          {{else}}
+          <p style="text-align: center; font-weight: bold;">There are no deliveries on {{dateTmr}}</p>
+          {{/if}}
+
+
+      </div>
+    </div>
+    <br>
+
+
+<div class="panel panel-default" style="width: 70em; margin-left: 150px;">
+      <div class="panel-heading" style="background-color: moccasin ;"> {{!--navajowhite--}}
+        <h4 class="panel-title" style="height: 20px; ">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">{{dateTmr2}}</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse ">
+        {{#if deli3}}
+        {{#each deli3}}
+        <div class="panel-body">         
+          <div class="col-sm-12 col-md-6 col-lg-8">
+              {{!-- <div class="row"> --}}
+            <div class="col-sm-12 col-md-6 col-lg-3">
+
+              <label>Order No.</label>
+              <p>{{cOrderNo}}</p>
+
+            </div>
+            {{!-- {{#if orderItem}} --}}
+            {{!-- {{#each orderItem}} --}}
+                <div class="col-sm-12 col-md-6 col-lg-3">
+
+
+              <label>Item & quantity</label>
+              {{!-- {{#each orderItem}} --}}
+              <p>{{ItemName}}</p>
+
+              {{!-- {{/each}} --}}
+            </div>
+            <br><br>
+
+            {{!-- </div> --}}
+          </div>
+
+
+
+
+
+
+        </div>
+
+          {{/each}}
+
+          {{else}}
+          <p style="text-align: center; font-weight: bold;">There are no deliveries on {{dateTmr2}}</p>
+          {{/if}}
+      </div>
+    </div>
+
+
+
+    <br>
+
+
+
+<div class="panel panel-default" style="width: 70em; margin-left: 150px;">
+      <div class="panel-heading" style="background-color: moccasin ;"> {{!--navajowhite--}}
+        <h4 class="panel-title" style="height: 20px; ">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">{{dateTmr3}}</a>
+        </h4>
+      </div>
+       <div id="collapse4" class="panel-collapse collapse ">
+        {{#if deli4}}
+        {{#each deli4}}
+        <div class="panel-body">
+
+          <div class="col-sm-12 col-md-6 col-lg-8">
+            {{!-- <div class="row"> --}}
+            <div class="col-sm-12 col-md-6 col-lg-3">
+
+              <label>Order No.</label>
+              <p>{{cOrderNo}}</p>
+
+            </div>
+            {{!-- {{#if orderItem}} --}}
+            {{!-- {{#each orderItem}} --}}
+ <div class="col-sm-12 col-md-6 col-lg-3">
+
+
+              <label>Item & quantity</label>
+              {{#each orderItem}}
+              <p>{{ItemName}}</p>
+
+              {{/each}}
+            </div>
+            <br><br>
+
+            {{!-- </div> --}}
+          </div>
+
+
+
+
+
+
+
+        </div>
+ {{/each}}
+
+          {{else}}
+          <p style="text-align: center; font-weight: bold;">There are no deliveries on {{dateTmr3}}</p>
+          {{/if}}
+      </div>
+
+</div>
+
+
+<br>
+
+
+<div class="panel panel-default" style="width: 70em; margin-left: 150px;">
+      <div class="panel-heading" style="background-color: moccasin ;"> {{!--navajowhite--}}
+        <h4 class="panel-title" style="height: 20px; ">
+    
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">{{dateTmr4}}</a>
+        </h4>
+      </div>
+       <div id="collapse5" class="panel-collapse collapse ">
+        {{#if deli5}}
+        {{#each deli5}}
+        <div class="panel-body">
+
+          <div class="col-sm-12 col-md-6 col-lg-8">
+            {{!-- <div class="row"> --}}
+            <div class="col-sm-12 col-md-6 col-lg-3">
+
+              <label>Order No.</label>
+              <p>{{cOrderNo}}</p>
+
+            </div>
+            {{!-- {{#if orderItem}} --}}
+            {{!-- {{#each orderItem}} --}}
+            <div class="col-sm-12 col-md-6 col-lg-3">
+
+
+              <label>Item & quantity</label>
+              {{#if}}
+              {{#each order}}
+              <p>{{ItemName}}</p>
+
+              {{/each}}
+              {{/if}}
+            </div>
+            <br><br>
+
+            {{!-- </div> --}}
+          </div>
+
+
+        </div>
+ {{/each}}
+
+          {{else}}
+          <p style="text-align: center; font-weight: bold;">There are no deliveries on {{dateTmr4}}</p>
+          {{/if}}     
+      </div>
+</div>
+
+
+
+
+  </div>  
+{{!-- {{#each deli2}} --}}
+<script>
+  //var x = document.getElementById("myDIV");
+ // x.innerHTML = '{{ItemName}} <br/>';
+ /*function checkOrder(){
+   x = document.getElementById('odNo').innerHTML
+   if (x == '{{cOrderNo}}'){
+     ItemName = document.getElementById("p").innerHTML + ' <br/> {{ItemName}}';
+     console.log(ItemName, "woof");
+   }*/
+ }
+</script>
+{{!-- {{/each}} --}}
+</body>

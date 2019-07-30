@@ -1,0 +1,30 @@
+h1{
+    text-align: center;
+}
+
+.feedbackTable{
+    /* border: 2px solid #ffa500; */
+    /* border-collapse: collapse; */
+    font-family: 'Times New Roman', Times, serif;
+    padding: 0;
+    width: 80%;
+    height: 10%;
+    padding-top: -30%;
+    text-align: center;
+    font-size: 11px;
+}
+
+td{
+    /* border: 2px solid #ffa500; */
+    /* border-collapse: collapse; */
+    font-family: 'Times New Roman', Times, serif;
+    /* padding-left: -20%;
+    padding-right: -20%; */
+    /* font-size: 11px; */
+    width: 25em;
+}
+
+.feedbackA
+{
+    margin-left: 8em;
+}

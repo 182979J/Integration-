@@ -1,0 +1,41 @@
+<body onload="show()">
+    <div>
+
+        <h1>Delivery Schedule</h1>
+        <br>
+        <select class="region" name="" id="selectFilter" style="margin-left: 43em;" onchange="myFunction()">
+            <option class="regionPick" id="" value="all" selected>All Regions</option>
+            <option class="regionPick" id="" value="East">East</option>
+            <option class="regionPick" id="" value="North">North</option>
+            <option class="regionPick" id="" value="West">West</option>
+        </select>
+
+
+        <br><br>
+        <table class="adDel" align="center">
+            <div style="font-weight: bold; text-align:center;"> There are no deliveries set for this area</div>
+        </table>
+
+    </div>
+    <script>
+        function myFunction() {
+            var e = document.getElementById("selectFilter");
+            var strUser = e.options[e.selectedIndex].value;
+            console.log(strUser, "aye");
+            location.replace("/main_s/delivery/" + strUser);
+            
+            
+        }
+        function show() {
+            urlNow = window.location.href;
+            console.log(urlNow, 'yoooooo');
+            urlSplit= urlNow.slice(30);
+            document.getElementById("selectFilter").value = urlSplit;
+        }
+        
+        
+        
+            //document.getElementById("selectFilter") = '{{filterDone}}';
+        
+    </script>
+</body> 
