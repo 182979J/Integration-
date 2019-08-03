@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const FlashMessenger = require('flash-messenger');// Library to use MySQL to store session objects
 const MySQLStore = require('express-mysql-session');
+const user = require('./models/aUser');
 const db = require('./config/db'); // db.js config file
 // const passport = require('passport');
 const passport_a = require('passport');
@@ -17,6 +18,11 @@ const auserRoute = require('./routes/user_a');
 const afeedback = require('./routes/feedbackRec');
 const stocks = require('./routes/stocks');
 const SmainRoute = require('./routes/main_s');
+
+
+const cuserRoute = require('./routes/cuser');
+const cfeedbackRoute=require('./routes/cfeedback');
+const cshoppingRoute=require('./routes/cshopping');
 
 const delDB = require('./config/DBConnection');
 // Connects to MySQL database
@@ -31,6 +37,9 @@ const app = express();
 
 app.engine('handlebars', exphbs({
 	helpers: {
+		formatDate: formatDate,
+		radioCheck: radioCheck,
+		replaceCommas: replaceCommas,
 		tester:function(lvalue, rvalue, options) {
 
 			if (arguments.length < 3)
@@ -125,6 +134,53 @@ app.use(function (req, res, next) {
 	res.locals.error_msg = req.flash('error_msg');
 	res.locals.error = req.flash('error');
 	res.locals.user = req.user || null;
+	// if(user.type=="cuser"){
+	// 	res.locals.cuser=req.user
+	// }
+	// if(user.type=="admin"){
+	// 	res.locals.admin=req.user
+	// }
+	// else
+	 //{res.locals.user = req.user || null;}
+	// res.locals.cuser = null; {
+	// 	if  (user.type == "cuser"){
+	// 	res.locals.cuser=req.cuser}};  
+//console.log(req.user.type);
+
+	// res.locals.cuser = null ;
+	// 	if  (req.user.type == "cuser"){
+	// 		console.log('hi1');
+	// 	res.locals.cuser=req.user
+	// }
+	// else{
+	// 	res.locals.user = req.user || null;
+	// }	 
+	// res.locals.admin = null ; 
+	// 	if  (req.user.type == "admin"){
+	// 		console.log('hi3'); 
+	// 	res.locals.admin=req.user}
+	// 	else{
+	// 		res.locals.user = req.user || null;
+	// 	}
+		//res.locals.user = null ; 
+
+
+//res.locals.cuser = null ; 
+if(req.user){
+	
+	if(req.user.type=="cuser"){
+	
+	res.locals.cuser = req.user;}
+}
+ 
+//res.locals.admin = null ; 
+if(req.user){
+
+	if(req.user.type=="admin"){
+		
+	res.locals.admin = req.user;}
+}
+
 	next();
 });
 
@@ -144,6 +200,11 @@ app.use('/feedback', afeedback);
 
 
 app.use('/stocks', stocks);
+
+app.use('/cuser', cuserRoute); // mainRoute is declared to point to routes/main.js
+
+app.use('/feedbackk',cfeedbackRoute);
+app.use('/shopping',cshoppingRoute);
 
 const port = 5000;
 
