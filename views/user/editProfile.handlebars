@@ -4,7 +4,11 @@
 <form action="/user/editProfile/{{user.id}}?_method=PUT" method="post">
 
 <input type="hidden" name="_method" value="PUT">
+<input type="file" id="posterUpload" name="posterUpload" accept="image/png,image/jpeg,image/jpg,image/gif"> 
 
+<img id="poster" src="/img/no-image.jpg" alt="" class="border img-thumbnail img-fluid"
+                        style="height:95%;width:100%">
+<div class="font-weight-bold text-danger small" id="posterErr" style="display:none"></div>
  <div class="allContent">
      
 {{!-- <input type="file" id="posterUpload" name="posterUpload" accept="image/png,image/jpeg,image/jpg,image/gif"> 
@@ -13,12 +17,9 @@
 <img id="poster" class = "profImg" src="/img/no-image.jpg" alt="" class="border img-thumbnail img-fluid"
                         style="height:30%;width:30S%">
 <input id="profImg" type="hidden" name="profImg"> --}}
-<input type="file" id="posterUpload" name="posterUpload" accept="image/png,image/jpeg,image/jpg,image/gif"> 
 
-<img id="poster" src="/img/no-image.jpg" alt="" class="border img-thumbnail img-fluid"
-                        style="height:95%;width:100%">
     {{!—- Hidden field to submit URL of poster to the server --}}
-<input id="posterURL" type="hidden" name="posterURL">
+{{!-- <input id="posterURL" type="hidden" name="posterURL"> --}}
 {{!-- Practical 10 Exercise 01 --}}
 <div class="font-weight-bold text-danger small" id="posterErr" style="display:none"></div>
 <div class="rightContent">

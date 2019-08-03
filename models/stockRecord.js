@@ -4,20 +4,56 @@ const db = require('../config/DBConfig');
 Note that Sequelize automatically pleuralizes the entity name as the table name
 */
 const stockRec = db.define('stockrec', {
+    // itemCode: {
+    //     type: Sequelize.STRING
+    // },
+    // desc: {
+    //     type: Sequelize.STRING
+    // },
+    // merchant:{
+    //     type: Sequelize.STRING
+    // },
+    // qtyInStock: {
+    //     type: Sequelize.STRING
+    // },
+    // upDate: {
+    //     type: Sequelize.STRING
+    // }
+    merchant:{
+        type:Sequelize.STRING
+    },
+    itemName:{
+        type:Sequelize.STRING
+    },
+    price:{
+       type:Sequelize.DECIMAL
+    },
     itemCode: {
         type: Sequelize.STRING
     },
-    desc: {
+    description: {
+        type: Sequelize.STRING(2000)
+    },
+    quantity: {
         type: Sequelize.STRING
     },
-    merchant:{
+    referenceNo: {
         type: Sequelize.STRING
     },
-    qtyInStock: {
+    dateofDelivery: {
+        type: Sequelize.DATE
+    },
+    posterURL:{
+
         type: Sequelize.STRING
     },
-    upDate: {
+    status: {
         type: Sequelize.STRING
+    },
+    arrivedDate:{
+        type: Sequelize.STRING
+
     }
+    
 });
 module.exports = stockRec;

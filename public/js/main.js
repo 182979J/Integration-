@@ -16,12 +16,16 @@ function ensureOneCheck(checkBoxName, messageId, submitId) {
 	}
 }
 
+
+
+
+
 $('#posterUpload').on('change', function(){
 	let image = $("#posterUpload")[0].files[0];
 	let formdata = new FormData();
 	formdata.append('posterUpload', image);
 	$.ajax({
-	url: '/video/upload',
+	url: '/user/upload',
    type: 'POST',
 	data: formdata,
 	contentType: false,
@@ -38,5 +42,4 @@ $('#posterUpload').on('change', function(){
 	}
 	});
    });
-   
 

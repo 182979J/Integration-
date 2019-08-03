@@ -34,6 +34,10 @@ const Form = db.define('form', {
     },
     status: {
         type: Sequelize.STRING
+    },
+    arrivedDate:{
+        type: Sequelize.STRING
+
     }
 });
 

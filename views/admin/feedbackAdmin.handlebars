@@ -1,13 +1,21 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="/css/feedbackA.css">
 
 {{#if feedbacks}}
 <h1>Feedback</h1>
     <br>
     {{#each feedbacks}}
-    <table class="feedbackA" align="center">
+    {{!-- <table class="feedbackA" align="center"> --}}
+{{!-- <div class="container"></div> --}}
+<tr>
+    <td class="rate">
+<span id = "stars">{{rate}}</span>
 
+</td>
+  </tr>
             <tr>
-                <td><img src="{{imgurl}}">{{DropdownPorS}}{{rate}}</td>
+                
+                <td><img src="{{imgurl}}">{{DropdownPorS}}</td>
             </tr>
             <tr>
                 <td></td>{{DropdownSType}}<td>{{productcode}}</td>
@@ -19,9 +27,35 @@
                 <td>{{Message}}</td>
             </tr>
             <tr><td>{{emailfeedback}}</td></tr>
-        </table>
+        {{!-- </table> --}}
         <br>
         <br>
-            {{/each}}
+        </div>
+            {{/each}}             
             {{/if}}
-           
+
+  <script>
+  var x = document.getElementById("stars").innerHTML
+  document.getElementById("stars").innerHTML = getStars(x);
+
+function getStars(rating) {
+
+  // Round to nearest half
+  rating = Math.round(rating * 2) / 2;
+  let output = [];
+
+  // Append all the filled whole stars
+  for (var i = rating; i >= 1; i--)
+    output.push('<i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+
+  // If there is a half a star, append it
+  if (i == .5) output.push('<i class="fa fa-star-half-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+
+  // Fill the empty stars
+  for (let i = (5 - rating); i >= 1; i--)
+    output.push('<i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+
+  return output.join('');
+
+}
+</script>

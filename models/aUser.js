@@ -22,9 +22,12 @@ const User = db.define('user', {
     designation: {
         type: Sequelize.STRING
     },
-    imageurl: {
+    posterURL: {
         type: Sequelize.STRING
     },
+    type:{
+        type: Sequelize.STRING
+    }
 
 });
 module.exports = User; 

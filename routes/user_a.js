@@ -102,67 +102,186 @@ router.post('/login', (req, res, next) => {
 // 	res.render('user/profile');
 // });
 
-router.post('/register', (req, res) => {
 
-    let errors = [];
-    // Retrieves fields from register page from request body
-    let { staffNo,email, password, password2 } = req.body;
-    let user=req.params.id;
-    User.findOne({ where: { staffNo: req.body.staffNo } })
-            .then(user => {
-                if (user) {
-                    if(user.password != null)
-                    { 
-                        res.render('user/register', {
-                                error: user.staffNo + ' already registered',
-                                staffNo,
-                                email,
-                                password,
-                                password2
-                        });       
-                    }
-                     else{
 
-                        if(email == user.email)
-                        {
-                            res.render('user/register', {
-                                error: user.email + 'used. Please use another email!',
-                                staffNo,
-                                email,
-                                password,
-                                password2
-                        });        
-                        }
 
-                        else
-                        {
-                            // let user=req.params.id;
-                            // password = Math.random().toString(36).replace('0.', '');
-                            // console.log(password)
-                            // var salt = bcrypt.genSaltSync(10);
-                            // var hashedPassword = bcrypt.hashSync(password, salt);
-                            // password = hashedPassword;
 
-                            User.update({
-                                staffNo,
-                                email,
-                                password,
-                                password2
-                            }, {
-                                where: {
-                                    id: user
-                                }
-                            }).then(() => {
-                                res.redirect('/staffLogin');
-                            }).catch(err => console.log(err));
-                        }
-                     } 
+
+// router.get('/getTemp/:id', ensureAuthenticated, (req, res) => {
+//     let { staffNo,email, password} = req.body;
+//     let user=req.params.id;
+//     User.findOne({ where: { staffNo: req.body.staffNo } })
+//             .then(user => {
+//                 if (user) {
+//                     if(user.password != null)
+//                     { 
+//                         res.render('user/register', {
+//                                 error: user.staffNo + ' already registered',
+//                                 staffNo,
+//                                 email,
+//                                 password
+//                         });       
+//                     }
+//                     else{
+
+//                         if(email == user.email)
+//                         {
+//                             res.render('user/register', {
+//                                 error: user.email + 'used. Please use another email!',
+//                                 staffNo,
+//                                 email,
+//                                 password
+//                         });        
+//                         }
+//                         else{
+//                                 var tempPass = Math.random().toString(36).replace('0.','0')
+//                                 console.log(tempPass)
+//                                 User.update({
+//                                     password: tempPass,
+//                                 }, {
+//                                         where: {
+//                                             id: req.params.id
+//                                         },
+//                                 }).then((users) => {
+
+//                                     }).catch(err => console.log(err));
+//                             }
+//                         }
+//                     }
+//                 })
+//             });
+                        
+
+                
+
+
+            router.post('/register', (req, res) => {
+
+                let errors = [];
+                // Retrieves fields from register page from request body
+                let { staffNo, password, password2 } = req.body;
+                let type = "admin";
+            
+                // Checks if both passwords entered are the same
+                if (password !== password2) {
+                    errors.push({ text: 'Passwords do not match' });
+                }
+            
+                // Checks that password length is more than 4
+                if (password.length < 4) {
+                    errors.push({ text: 'Password must be at least 4 characters' });
+                }
+                if (errors.length > 0) {
+                    res.render('user/register', {
+                        errors,
+                        staffNo,
+                        password,
+                        password2,
+                        type
+                    });
+                } else {
+                    // If all is well, checks if user is already registered
+                    User.findOne({ where: { staffNo: req.body.staffNo } })
+                        .then(user => {
+                            if (user) {
+                                // If user is found, that means email has already been
+                                // registered
+                                res.render('user/register', {
+                                    error: user.staffNo + ' already registered',
+                                    staffNo,
+                                    password,
+                                    password2,
+                                    type
+                                });
+                            } else {
+                                // Encrypt the password
+                                var salt = bcrypt.genSaltSync(10);
+                                var hashedPassword = bcrypt.hashSync(password, salt);
+                                password = hashedPassword;
+            
+                                // Create new user record
+                                User.create({ staffNo, password, type })
+                                    .then(user => {
+                                        alertMessage(res, 'success', user.staffNo + ' added. Please login', 'fas fa-sign-in-alt', true);
+                                        res.redirect('/staffLogin');
+                                    })
+                                    .catch(err => console.log(err));
+                            }
+                        });
                 }
             });
 
-        });
 
-    // Checks if both passwords entered are the same
+
+// 			// where: {
+// 			// 	id: req.user.id
+// 			// },
+
+// 			raw: true
+	
+
+
+// router.post('/register', (req, res) => {
+
+//     let errors = [];
+//     // Retrieves fields from register page from request body
+//     let { staffNo,email, password, password2 } = req.body;
+//     let user=req.params.id;
+//     User.findOne({ where: { staffNo: req.body.staffNo } })
+//             .then(user => {
+//                 if (user) {
+//                     if(user.password != null)
+//                     { 
+//                         res.render('user/register', {
+//                                 error: user.staffNo + ' already registered',
+//                                 staffNo,
+//                                 email,
+//                                 password,
+//                                 password2
+//                         });       
+//                     }
+//                      else{
+
+//                         if(email == user.email)
+//                         {
+//                             res.render('user/register', {
+//                                 error: user.email + 'used. Please use another email!',
+//                                 staffNo,
+//                                 email,
+//                                 password,
+//                                 password2
+//                         });        
+//                         }
+
+//                         else
+//                         {
+//                             // let user=req.params.id;
+//                             // password = Math.random().toString(36).replace('0.', '');
+//                             // console.log(password)
+//                             // var salt = bcrypt.genSaltSync(10);
+//                             // var hashedPassword = bcrypt.hashSync(password, salt);
+//                             // password = hashedPassword;
+
+//                             User.update({
+//                                 staffNo,
+//                                 email,
+//                                 password,
+//                                 password2
+//                             }, {
+//                                 where: {
+//                                     id: user
+//                                 }
+//                             }).then(() => {
+//                                 res.redirect('/staffLogin');
+//                             }).catch(err => console.log(err));
+//                         }
+//                      } 
+//                 }
+//             });
+
+//         });
+
+//     // Checks if both passwords entered are the same
     
 
     router.get('/profile/:id', (req, res) =>{
@@ -184,13 +303,13 @@ router.post('/register', (req, res) => {
         let staffName = req.body.staffName;
         let phoneNo=req.body.phoneNo;
         let email=req.body.email;
-        let imageurl=req.body.posterURL;
-        let user=req.params.id;
+        let posterURL=req.body.posterURL;
+        var user=req.params.id;
         User.update({
             staffName,
             phoneNo,
             email,
-            imageurl
+            posterURL
         }, {
             where: {
                 id: user
@@ -203,10 +322,10 @@ router.post('/register', (req, res) => {
     
     router.post('/upload', ensureAuthenticated, (req, res) => {
         // Creates user id directory for upload if not exist
-        console.log("222222222222222222222222222222222222222222222222222");
+        
         if (!fs.existsSync('./public/uploads/' + req.user.id)) {
             fs.mkdirSync('./public/uploads/' + req.user.id);
-            console.log("upload testinggggggggggggggggggggggggggggggggggggggggggggggg");
+           
         }
     
         upload(req, res, (err) => {
@@ -221,7 +340,6 @@ router.post('/register', (req, res) => {
             }
         });
     })
-
 
 router.post('/register', (req, res) => {
     req.logout();
