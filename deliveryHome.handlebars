@@ -1,0 +1,96 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/del_admin.css">
+
+</head>
+
+<body onload='check()'>
+    <br>
+    <h1>Your Deliveries</h1>
+    <br>
+
+    <button>See Tomorrow</button>
+
+    <h3 style="text-align: center;">Today</h3>
+
+
+    <p id="counting" style="text-align: center;"></p>
+    
+        <br><br>
+
+    <p style="text-align: center;"><b>Pick Up :</b> Keppel Logistics @ Tampines Logistics Park, 27 Greenwich Dr</p>
+    <p style="text-align: center;">Singapore 533912</p>
+    <br><br><br>
+    <table style="margin-left: 21%;">
+        {{#if order}}
+        <tr>
+            <th id="bigger">Order No.</th>
+            <th>Customer Name</th>
+            <th>Item Name</th>
+            <th>Item Description</th>
+            {{!-- <th id="pickUpLdeloc">Pick Up Location</th> --}}
+            <th>Number of Items Ordered</th>
+            <th>Package Collected?</th>
+            {{!-- <th>Ordered Items</th> --}}
+
+        </tr>
+
+        {{#each order}}
+        <tr style="width: -50%; text-align:center;" >
+            <td  style="padding: 0.01%;"  id="orderid">{{orderid}}</td>
+            <td>{{payment.payname}}</td>
+            <td style="padding: 0.02%;">{{form.itemName}}</td>
+            <td style="padding: 0.2%;">{{form.description}}</td>
+            {{!-- <td style="padding: 0.2%; " id="pickUpLoc">Keppel Logistics @ Tampines Logistics Park, 27 Greenwich Dr <p>Singapore 533912</p></td> --}}
+            <td style="padding: 0.01%;">{{oquantity}}</td>
+            <td style="padding: 0.01%;"><input type="checkbox"></td>
+
+            
+
+            {{!-- <td>{{itemid}}</td> --}}
+        </tr>
+        {{/each}}
+        {{else}}
+        <p>weee empty. payment :(</p>
+        {{/if}}
+    </table>
+
+
+    <br><br><br>
+
+
+
+
+    <script>
+        document.getElementById('counting').innerHTML = 'You have _____ deliveries today';
+
+
+
+        //:(
+       /* function check(){
+
+        
+          for(j = 0; j < 100000; j++){
+                idName = 'status'+j;
+                
+                
+                document.getElementById('orderid').id = idName;
+                document.getElementById(idName).innerHTML = '{{remarks}}';
+            }
+}*/
+
+      //  document.getElementById('orderid').onload = function checkId(){
+            //console.log('masusk dheckid');
+            //if('{{id}}' == prevId){
+                //document.getElementById('orderid').innerHTML= "{{id}}";
+           //     console.log('masuk if');
+            //}
+            //prevId = '{{id}}';
+            //console.log('aft change');
+        //}
+    </script>
+
+</body>
