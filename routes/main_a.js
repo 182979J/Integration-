@@ -11,42 +11,44 @@ const upload = require('../helpers/imageUpload');
 // 	res.render('index', { title: title }) // renders views/index.handlebars
 // });
 
-
+// liqi
 router.get('/staffLogout', (req, res) => {
 	req.logout();
 	res.redirect('/staffLogin');
 });
 
-// router.get('/about', (req, res) => {
+router.get('/about', (req, res) => {
 
-// 	let success_msg = 'Success message';
-// 	let error_msg = 'Error message using error_msg';
+	let success_msg = 'Success message';
+	let error_msg = 'Error message using error_msg';
 
-// 	alertMessage(res, 'success',
-// 		'This is an important message', 'fas fa-sign-in-alt', true);
-// 	alertMessage(res, 'danger',
-// 		'Unauthorised access', 'fas fa-exclamation-circle', false);
+	alertMessage(res, 'success',
+		'This is an important message', 'fas fa-sign-in-alt', true);
+	alertMessage(res, 'danger',
+		'Unauthorised access', 'fas fa-exclamation-circle', false);
 
-// 	var errorTexts = [
-// 		{ text: "Error message using error object" },
-// 		{ text: "First error message🙅‍♀️" },
-// 		{ text: "Second error message 🚫" },
-// 		{ text: "Third error message⛔" }
-// 	];
+	var errorTexts = [
+		{ text: "Error message using error object" },
+		{ text: "First error message🙅‍♀️" },
+		{ text: "Second error message 🚫" },
+		{ text: "Third error message⛔" }
+	];
 
 
-// 	var dev_name = "🧐 Happy 脸😀"
-// 	res.render('about', {
-// 		developer_name: dev_name,
-// 		success_msg: success_msg,
-// 		error_msg: error_msg,
-// 		errors: errorTexts
-// 	}) // renders views/about.handlebars
-// });
+	var dev_name = "🧐 Happy 脸😀"
+	res.render('about', {
+		developer_name: dev_name,
+		success_msg: success_msg,
+		error_msg: error_msg,
+		errors: errorTexts
+	}) // renders views/about.handlebars
+});
 
 router.get('/staffLogin', (req, res) => {
 	res.render('user/login')
 });
+
+
 
 router.get('/salesRecord', ensureAuthenticated, (req, res) =>{
 	User.findAll({
@@ -87,4 +89,21 @@ router.get('/staffRegister', (req, res) => {
 	res.render('user/register')
 });
 
+
+// jiaen
+router.get('/chome', (req, res) => {
+	
+	res.render('chome') 
+});
+router.get('/CRegister', (req, res) => {
+	res.render('user/cregister') // renders views/register.handlebars
+});
+
+router.get('/', (req, res) => {
+	res.render('user/clogin') // renders views/user/login.handlebars
+});
+router.get('/logout', (req, res) => {
+	req.logout();
+	res.redirect('/');
+});
 module.exports = router;

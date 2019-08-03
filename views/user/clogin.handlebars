@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="/css/cstyle.css">
+
+<div class="row formloginR">
+	<div class="col-md-6 mx-auto">
+		<div class="card card-body">
+			<h3 class="text-center">Account Login</h3>
+			<form method="post" action="../cuser/clogin" class="cformloginR"> 
+				<div class="form-group">
+					<label for="email">Email</label><br>
+					<input type="email" name="email" class="clogininputBox" required value="{{email}}">
+				</div>
+				<div class="form-group">
+					<label for="password">Password</label><br>
+					<input type="password" name="password" class="clogininputBox" required value="{{password}}">
+				</div>
+				<button type="submit" class="addfeedback">Submit</button> <a href="../cRegister" class="addfeedback">Register</a>
+
+			</form>
+		</div>
+	</div>
+</div>
+
+
+{{!-- const express = require('express');
+const router = express.Router();
+router.get('/', (req, res) => {
+const title = 'Video Jotter';
+res.render('index', { // renders views/index.handlebars
+title
+})
+});
+router.get('/about', (req, res) => {
+const author = 'Your name';
+res.render('about', { // renders views/about.handlebars, passing
+author as variable
+author: autho --}}

@@ -48,6 +48,7 @@
 
 
 			<ul class="navbar-nav mt-1">
+				{{#if admin}}
 				<li class="nav-item">
 					<a class="nav-link" href="/salesRecord">Sales Record</a>
 				</li>
@@ -84,6 +85,44 @@
 						<a href="" class="dropdown-item">Register for Merchants</a>
 					</div>
 				</li>
+				{{/if}}
+				
+				{{#if cuser}}
+				<li class="nav-item">
+					<a class="nav-link" href="/shopping/shop">Store</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/feedbackk/messageemail">Send Feedback</a>
+				</li>
+				
+		  <li class="nav-item">
+						<a href="/shopping/cartfull" class="nav-link"> 
+						<span class="cart-info__icon mr-lg-3"><i class="fas fa-shopping-cart"></i></span>Cart</a>
+					</li>
+					<li class="nav-item">
+						<a href="/shopping/wishlist" class="nav-link">WishList</a>
+					</li>
+						{{!-- <li class="nav-item">
+						<a href="../shopping/paymenttype" class="nav-link">Payment</a>
+					</li> --}}
+					{{!-- {{#if user.profileURL}}
+						<li class="nav-item">
+						<img class="narprofile" src="{{user.profileURL}}"></li>
+						<li class="nav-item"></li>
+						{{else}}
+						<li class="nav-item">
+						<img class="narprofile" src="img/profile.png"></li>
+						<li class="nav-item"></li>
+						{{/if}} --}}
+						<a href="/cuser/profile/{{user.id}}" class="nav-link">Profile</a>
+					</li>
+					
+					<li class="nav-item">
+						<a href="/logout" class="nav-link">Logout</a>
+					</li>
+					
+				{{/if}}
+
 			</ul>
 		</div>
 	</div>

@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="/css/cstyle.css">
+<div class="onlycenter">
+{{#if user.profileURL}}
+	<img class="picinprofile" src="{{user.profileURL}}"></li>
+    {{else}}	
+    <img class="picinprofile" src="/img/profile.png"></li>
+    {{/if}}
+</div>
+<div class="profileinfo" >
+<p>Name:{{ user.name }}</p>
+<p>Email:{{user.email}}</p>
+<p>Name:{{ user.name }}</p>
+<p>Address:{{user.address}}</p>
+<p>	Postal Code:{{ user.postalcode }}</p>
+<a class="addfeedback" href="../profileEdit">Update profile</a>
+<br>
+</div>
+</div>
+
+<h1 id="feedbacktitle">Order History</h1>
+<br>
+<div class="onlycenter">
+{{#if history}}
+<ul>
+{{#each history}}
+    <li class="itemboxcart">
+<img src="{{posterURL}}" alt="Poster unavailable"  class="cartpic">
+             <div class="allitemorderdetail">
+{{itemName}}
+${{price}}
+<p class="quantityincart">
+X{{oquantity}}</p>
+</div>
+Remarks:
+{{#if remark}}
+<div class="remarkincart">
+{{remark}}
+</div>
+{{else}}
+<div class="remarkincart">
+No remarks
+</div>
+{{/if}}
+<div class="dateandtimeinorder">
+    <p class="datetimecolour">Date:{{date}} Time:{{time}}</p>
+</div>
+<br>
+    </li>
+{{/each}}
+</ul>
+{{/if}}
+</div>
+
+
