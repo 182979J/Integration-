@@ -18,7 +18,9 @@ const auserRoute = require('./routes/user_a');
 const afeedback = require('./routes/feedbackRec');
 const stocks = require('./routes/stocks');
 const SmainRoute = require('./routes/main_s');
-
+const MmainRoute = require('./routes/m_main');
+const muserRoute = require('./routes/m_user');
+const formRoute = require('./routes/form');
 
 const cuserRoute = require('./routes/cuser');
 const cfeedbackRoute=require('./routes/cfeedback');
@@ -180,6 +182,13 @@ if(req.user){
 		
 	res.locals.admin = req.user;}
 }
+//res.locals.admin = null ; 
+if(req.user){
+
+	if(req.user.type=="muser"){
+		
+	res.locals.muser = req.user;}
+}
 
 	next();
 });
@@ -205,6 +214,9 @@ app.use('/cuser', cuserRoute); // mainRoute is declared to point to routes/main.
 
 app.use('/feedbackk',cfeedbackRoute);
 app.use('/shopping',cshoppingRoute);
+app.use('/form',formRoute)
+app.use('/m_user', muserRoute);
+app.use('/m_main', MmainRoute);
 
 const port = 5000;
 
