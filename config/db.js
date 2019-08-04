@@ -1,6 +1,6 @@
 module.exports = {
     host: 'localhost',
-    database: 'integrated_poop',
-    username: 'ooadp2019',
-    password: '123456789abcdefg'
+    database: 'integration',
+    username: 'itp211',
+    password: 'itp211@nypsit'
     }
