@@ -86,7 +86,7 @@
 					</div>
 				</li>
 				{{/if}}
-				
+
 				{{#if cuser}}
 				<li class="nav-item">
 					<a class="nav-link" href="/shopping/shop">Store</a>
@@ -94,18 +94,18 @@
 				<li class="nav-item">
 					<a class="nav-link" href="/feedbackk/messageemail">Send Feedback</a>
 				</li>
-				
-		  <li class="nav-item">
-						<a href="/shopping/cartfull" class="nav-link"> 
+
+				<li class="nav-item">
+					<a href="/shopping/cartfull" class="nav-link">
 						<span class="cart-info__icon mr-lg-3"><i class="fas fa-shopping-cart"></i></span>Cart</a>
-					</li>
-					<li class="nav-item">
-						<a href="/shopping/wishlist" class="nav-link">WishList</a>
-					</li>
-						{{!-- <li class="nav-item">
+				</li>
+				<li class="nav-item">
+					<a href="/shopping/wishlist" class="nav-link">WishList</a>
+				</li>
+				{{!-- <li class="nav-item">
 						<a href="../shopping/paymenttype" class="nav-link">Payment</a>
 					</li> --}}
-					{{!-- {{#if user.profileURL}}
+				{{!-- {{#if user.profileURL}}
 						<li class="nav-item">
 						<img class="narprofile" src="{{user.profileURL}}"></li>
 						<li class="nav-item"></li>
@@ -114,14 +114,51 @@
 						<img class="narprofile" src="img/profile.png"></li>
 						<li class="nav-item"></li>
 						{{/if}} --}}
-						<a href="/cuser/profile/{{user.id}}" class="nav-link">Profile</a>
-					</li>
-					
-					<li class="nav-item">
-						<a href="/logout" class="nav-link">Logout</a>
-					</li>
-					
+				<a href="/cuser/profile/{{user.id}}" class="nav-link">Profile</a>
+				</li>
+
+				<li class="nav-item">
+					<a href="/logout" class="nav-link">Logout</a>
+				</li>
+
 				{{/if}}
+				{{#if muser}}
+				<style>
+					.bg-primary {
+						background-color: #f4b642 !important;
+					}
+				</style>
+
+				
+	
+							<ul class="navbar-nav ml-auto">
+								
+								<li class="nav-item dropdown">
+									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
+										id="navbarDropdownMenuLink">Delivery
+									</a>
+									<div class="dropdown-menu">
+										<a href="/form/showsendForm" class="dropdown-item">Delivery Dispatch Order</a>
+										<a href="/form/saveForm" class="dropdown-item">Delivery Dispatch Records</a>
+									</div>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="/form/trash">Trash</a>
+								</li>
+
+								<li class="nav-item">
+									<a href="/logout" class="nav-link">Logout</a>
+								</li>
+								
+								{{/if}}
+							</ul>
+						</div>
+					</div>
+				</nav>
+
+
+
+
 
 			</ul>
 		</div>
